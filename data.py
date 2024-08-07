@@ -14,6 +14,14 @@ class URLs:
 
     RECOVER_URL = f'{BASE_URL}forgot-password'
 
+class Contents:
+
+    EMAIL = 'platon.tikhomirov@yandex.ru'
+
+    PASSWORD = '350018'
+
+    
+
 
 
 
@@ -28,14 +36,14 @@ class FirefoxData:
     print(123)
 
 
-class WebDriverFactory:
+#class WebDriverFactory:
 
-    @staticmethod
-    def getWebDriver(browserName):
-        if browserName == 'firefox':
-            return webdriver.Firefox()
-        elif browserName == 'chrome':
-            return webdriver.Chrome()
+ #   @staticmethod
+ #   def getWebDriver(browserName):
+ #       if browserName == 'firefox':
+ #           return webdriver.Firefox()
+ #       elif browserName == 'chrome':
+ #           return webdriver.Chrome()
 
 class FakeData:
 
@@ -48,3 +56,10 @@ class FakeData:
 
 
 
+def get_sign_up_data():
+
+    fake = faker.Faker()
+    email = fake.email()
+    password = fake.password()
+    name = fake.name()
+    return name, email, password

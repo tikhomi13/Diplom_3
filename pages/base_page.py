@@ -1,7 +1,17 @@
+import time
+
 import allure
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
 from locators.base_page_locators import BasePageLocators
+from locators.main_page_locators import MainPageLocators
+from locators.login_page_locators import LoginPageLocators
+from locators.register_page_locators import RegisterPageLocators
+
+import pytest
+from selenium import webdriver
+
 
 
 class BasePage:
@@ -43,3 +53,19 @@ class BasePage:
         windows_after = self.driver.switch_to.window(window_before[-1])
 
         return windows_after
+
+    def click_personal_account_button_in_header(self):
+       # WebDriverWait(self.driver, 9).until(EC.element_to_be_clickable(BasePageLocators.GO_TO_ACCOUNT_FROM_HEADER))
+
+        time.sleep(1)
+
+       # personal_account_button = self.driver.find_element(BasePageLocators.GO_TO_ACCOUNT_FROM_HEADER)
+
+        self.driver.find_element(*BasePageLocators.GO_TO_ACCOUNT_FROM_HEADER).click()
+
+    #personal_account_button = self.wait_and_find_element(BasePageLocators.GO_TO_ACCOUNT_FROM_HEADER)
+
+      #  personal_account_button.click()
+
+
+
