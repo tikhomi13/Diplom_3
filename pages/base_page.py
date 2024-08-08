@@ -9,6 +9,8 @@ from locators.main_page_locators import MainPageLocators
 from locators.login_page_locators import LoginPageLocators
 from locators.register_page_locators import RegisterPageLocators
 
+from data import URLs
+
 import pytest
 from selenium import webdriver
 
@@ -24,17 +26,27 @@ class BasePage:
         WebDriverWait(self.driver, time).until(EC.presence_of_element_located(locator), message=f'Not found {locator}')
         return self.driver.find_element(*locator)
 
-
     def wait_and_find_element(self, locator):
 
         WebDriverWait(self.driver, 6).until(EC.visibility_of_element_located(locator))
         return self.driver.find_element(*locator)
 
-
-
     def open_page(self, url):
 
         self.driver.get(url)
+
+    def get_url(self):
+
+        url = self.driver.current_url
+
+        return url
+
+    def update_page(self):
+
+        self.driver.refresh()
+
+
+
 
     @allure.step("Клик по кнопке Самокат в хедере слева")
     def click_samokat_button(self):

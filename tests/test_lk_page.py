@@ -20,18 +20,61 @@ from locators.main_page_locators import MainPageLocators
 
 from pages.login_page import LoginPage
 
+from pages.order_story_page import OrderStoryPage
+from locators.order_story_locators import OrderStoryLocators
+from data import URLs
+
 
 class TestLkPage:
 
+    def test_go_to_personal_account_click_on_personal_account_button_transition_succeeded(self, driver): # +
+
+        go_to_personal_account = BasePage(driver)
+        go_to_personal_account.click_personal_account_button_in_header()
+        login_page = LoginPage(driver)
+
+        assert login_page.get_vhod_text_on_login_page().is_displayed()  # проверка что отображается текст "Вход" после логаута
+
+    def test_go_to_order_story_click_on_order_story_button_transition_succeeded(self, driver, register_and_authorize):
+
+        click = MainPage(driver)
+        click.click_personal_account_button_in_header()
+
+        # проверяем что мешающий элемент не отображается
+        WebDriverWait(driver, 10).until(EC.invisibility_of_element_located(MainPageLocators.EXCESS_ELEMENT))
+
+        order_story = LkPage(driver)
+
+        order_story.go_to_order_story_page()
+
+        time.sleep(3)
+
+        story = OrderStoryPage(driver)
+        story.story_order_window()
+
+    # НЕ ОТОБРАЖАЕТСЯ ОКНО С ЗАКАЗАМИ ПРИ ЗАПУСКЕ АВТОТЕСТА. НИ В ОДНОМ БРАУЗЕРЕ.
 
 
-    def test_go_to_personal_account_click_on_personal_account_button_transition_succeeded(self):
+        assert story.story_order_window().is_displayed()
 
-        print(123) # Проверить переход по клику на «Личный кабинет»
+        pass
 
-    def test_go_to_order_story_click_on_order_story_button_transition_succeeded(self):
 
-        print(123) # Проверить переход в раздел «История заказов»
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     def test_exit_personal_account_press_exit_button_success(self, driver, register_and_authorize):  # тут фикстура на логин и регистер
 
@@ -48,4 +91,5 @@ class TestLkPage:
 
         assert login_page.get_vhod_text_on_login_page().is_displayed() # проверка что отображается текст "Вход" после логаута
 
-    # ПРОДОЛЖИТЬ ТУТ. ПРроверка основного ф-ционала, раздел "Лента заказов" 
+    # ПРОДОЛЖИТЬ ТУТ. ПРроверка основного ф-ционала, раздел "Лента заказов"
+
