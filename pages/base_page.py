@@ -45,20 +45,6 @@ class BasePage:
 
         self.driver.refresh()
 
-
-
-
-    @allure.step("Клик по кнопке Самокат в хедере слева")
-    def click_samokat_button(self):
-
-       # samokat_button = self.wait_and_find_element(BasePageLocators.SAMOKAT_BUTTON)
-        samokat_button = self.find_element_located(BasePageLocators.SAMOKAT_BUTTON)
-        samokat_button.click()
-
-        # добавить общие кнопки
-
-
-
     def switch_to_last_browser_tab(self): # убрать если не нужно
 
         window_before = self.driver.window_handles
@@ -66,18 +52,7 @@ class BasePage:
 
         return windows_after
 
-    def click_personal_account_button_in_header(self):
-       # WebDriverWait(self.driver, 9).until(EC.element_to_be_clickable(BasePageLocators.GO_TO_ACCOUNT_FROM_HEADER))
 
-        time.sleep(1)
-
-       # personal_account_button = self.driver.find_element(BasePageLocators.GO_TO_ACCOUNT_FROM_HEADER)
-
-        self.driver.find_element(*BasePageLocators.GO_TO_ACCOUNT_FROM_HEADER).click()
-
-    #personal_account_button = self.wait_and_find_element(BasePageLocators.GO_TO_ACCOUNT_FROM_HEADER)
-
-      #  personal_account_button.click()
 
 
 

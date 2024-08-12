@@ -10,6 +10,9 @@ class RecoverPageLocators:
 
     PASSWORD_VISIBILITY = (By.XPATH, ".//div[contains(@class, 'input__icon')]/*[1]")          # Кнопка видимости пароля в форме восстановления (проверить)
 
+   # NEW_VISIB = (By.XPATH, ".//div[@class='input__placeholder-focused']")
+
+
 
 
 

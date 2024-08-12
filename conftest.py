@@ -75,6 +75,7 @@ def register_and_authorize(driver, generator):  # рабочая версия к
     # проверяем что мешающий элемент не отображается
     WebDriverWait(driver, 10).until(EC.invisibility_of_element_located(MainPageLocators.EXCESS_ELEMENT))
 
+    time.sleep(2)
     driver.find_element(*MainPageLocators.LOGIN_BUTTON_MAINPAGE).click() # Клик по кнопке "Войти в аккаунт"
 
     # Ожидание кнопки "Зарегистрироваться" на экране логина
@@ -138,7 +139,7 @@ def register_and_authorize(driver, generator):  # рабочая версия к
 
 #    driver.find_element(*LoginPageLocators.LOG_IN_BUTTON_ON_LOGIN_SCREEN).click()
 
-    WebDriverWait(driver, 8).until(EC.visibility_of_element_located(BasePageLocators.GO_TO_ACCOUNT_FROM_HEADER))
+    WebDriverWait(driver, 8).until(EC.visibility_of_element_located(MainPageLocators.GO_TO_ACCOUNT_FROM_HEADER))
 
    # driver.find_element(*BasePageLocators.GO_TO_ACCOUNT_FROM_HEADER).click()
 

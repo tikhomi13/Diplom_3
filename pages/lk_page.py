@@ -1,5 +1,7 @@
 import time
 
+import allure
+
 from pages.base_page import BasePage
 from locators.lk_page_locators import LkPageLocators
 from locators.main_page_locators import MainPageLocators
@@ -15,6 +17,11 @@ from selenium import webdriver
 
 class LkPage(BasePage):
 
+
+    #def create_
+
+
+    @allure.title("Кнопка выхода")
     def logout(self):
 
         self.find_element_located(LkPageLocators.EXIT_BUTTON, 8)
@@ -24,15 +31,17 @@ class LkPage(BasePage):
 
         return LoginPage(self.driver)
 
-    def go_to_order_story_page(self):    # переход на страницу "История заказов"
+    @allure.title("Переход на страницу История заказов")
+    def go_to_order_story_page(self):
 
         WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located(MainPageLocators.EXCESS_ELEMENT))
         time.sleep(1) # защита от элемента
 
-        story_button = self.find_element_located(LkPageLocators.ORDER_STORY)
+        story_button = self.find_element_located(LkPageLocators.ORDERS_STORY)
         story_button.click()
 
         return OrderStoryPage(self.driver)
+
 
 
 

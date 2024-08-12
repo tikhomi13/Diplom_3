@@ -11,6 +11,12 @@ class MainPageLocators:
 
     EXCESS_ELEMENT = (By.XPATH, ".//div[@class='Modal_modal_overlay__x2ZCr']")  # этого быть не должно
 
+    GO_TO_CONSTRUCTOR_FROM_HEADER = (By.XPATH, ".//p[(text()='Конструктор')]/ancestor::a[@href='/']")       # Кнопка перехода в 'Конструктор' в хедере
+
+    GO_TO_ACCOUNT_FROM_HEADER = (By.XPATH, "//p[(text()='Личный Кабинет')]/ancestor::a[@href='/account']")       # Кнопка 'Личный кабинет' в хедере
+
+    ASSEMBLE_THE_BURGER_TEXT_IN_CONSTRUCTOR = (By.XPATH, ".//h1[(text()='Соберите бургер')]")               #  Текст "Соберите бургер" в конструкторе
+
 
 
 

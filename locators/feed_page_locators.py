@@ -3,4 +3,4 @@ from selenium.webdriver.common.by import By
 
 class FeedPageLocators:
 
-    print(123)
+    ORDER_WINDOW = ""

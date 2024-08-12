@@ -8,7 +8,11 @@ class SetNewPasswordPageLocators:
 
     PASSWORD_FIELD = (By.XPATH, ".//input[@name='Введите новый пароль' and @type='password']")
 
-    SET_PASSWORD_VISIBLE = (By.XPATH, ".//div[contains(@class, 'input__icon')]/*[1]")
+    SHOW_PASSWORD = (By.XPATH, ".//div[contains(@class, 'input__icon')]/*[1]")
+
+    NEW_SELECTED_FIELD = (By.XPATH, ".//label[contains(@class, 'input__placeholder-focused')]")
+
+
 
     PASSWORD_ENTERED = (By.XPATH, ".//input[@name='Введите новый пароль' and @value='350018']")
 
