@@ -4,7 +4,6 @@ import allure
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from locators.base_page_locators import BasePageLocators
 from locators.main_page_locators import MainPageLocators
 from locators.login_page_locators import LoginPageLocators
 from locators.register_page_locators import RegisterPageLocators

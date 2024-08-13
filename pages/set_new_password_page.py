@@ -4,7 +4,6 @@ import allure
 import pytest
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from locators.base_page_locators import BasePageLocators
 from locators.login_page_locators import LoginPageLocators
 from locators.set_new_password_page_locators import SetNewPasswordPageLocators
 

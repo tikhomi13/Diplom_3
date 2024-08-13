@@ -17,6 +17,37 @@ class MainPageLocators:
 
     ASSEMBLE_THE_BURGER_TEXT_IN_CONSTRUCTOR = (By.XPATH, ".//h1[(text()='Соберите бургер')]")               #  Текст "Соберите бургер" в конструкторе
 
+    GO_TO_FEED = (By.XPATH, ".//a[@href='/feed']")
+
+    LENTA_ZAKAZOV_PHRASE_IN_ORDERS_FEED = (By.XPATH, ".//h1[(text()='Лента заказов')]")
+
+    BUN_IN_CONSTRUCTOR = (By.XPATH, ".//img[@alt='Флюоресцентная булка R2-D3']")
+
+    DETALI_INGREDIENTA_PHRASE = (By.XPATH, ".//h2[(text()='Детали ингредиента')]")
+
+    KREST = (By.XPATH, ".//section[contains(@class, 'Modal_modal_opened')]//div/button[contains(@class, 'close')]")
+
+    IDENTIFITATOR = (By.XPATH, ".//p[(text()='идентификатор заказа')]")
+
+    BASKET = (By.XPATH, ".//ul[contains(@class, 'BurgerConstructor_basket__list')]")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

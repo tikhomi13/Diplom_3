@@ -9,7 +9,6 @@ from selenium.webdriver.common.by import By
 # from data import WebDriverFactory
 from data import URLs
 
-from locators.base_page_locators import BasePageLocators
 from locators.main_page_locators import MainPageLocators
 from locators.login_page_locators import LoginPageLocators
 from locators.register_page_locators import RegisterPageLocators
