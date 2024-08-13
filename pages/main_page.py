@@ -5,7 +5,8 @@ import time
 from data import URLs
 from pages.base_page import BasePage
 from locators.main_page_locators import MainPageLocators
-from seletools import drag_and_drop
+
+from seletools.actions import drag_and_drop
 
 
 class MainPage(BasePage):
@@ -91,6 +92,12 @@ class MainPage(BasePage):
         order = self.wait_and_find_element(MainPageLocators.BASKET)
 
         drag_and_drop(self.driver, ingredient, order)
+
+
+    def check_if_counter_changed(self):
+
+        counter = self.wait_and_find_element(MainPageLocators.COUNTER_INCREASED)
+        return counter
 
 
 

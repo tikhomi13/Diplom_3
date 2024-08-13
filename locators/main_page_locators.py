@@ -31,6 +31,8 @@ class MainPageLocators:
 
     BASKET = (By.XPATH, ".//ul[contains(@class, 'BurgerConstructor_basket__list')]")
 
+    COUNTER_INCREASED = (By.XPATH, ".//p[(text()='1976')]")
+
 
 
 

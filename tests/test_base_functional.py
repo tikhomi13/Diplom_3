@@ -59,6 +59,15 @@ class TestLoginPage: # переименовать
 
         assert click_bun_ingredient.check_ingredient_is_clickable_again()
 
+
+    def test_adding_ingredient_increases_its_counter(self, driver):  # passed
+
+        move_ingredient = MainPage(driver)
+
+        move_ingredient.move_bun_to_order()
+
+        assert move_ingredient.check_if_counter_changed().is_displayed()
+
     def test_logged_in_user_is_able_to_place_an_order_order_placed(self, driver, register_and_authorize):
 
         place_an_order = MainPage(driver)
@@ -66,11 +75,10 @@ class TestLoginPage: # переименовать
 
         assert place_an_order.get_order_identifier().is_displayed()
 
-    def test_adding_ingredient_increases_its_counter(self, driver):
 
-        move_ingredient = MainPage(driver)
+        # ПРодолжить тут. Тестировать Раздел «Лента заказов»
 
-        move_ingredient.move_bun_to_order()
+
 
 
 
