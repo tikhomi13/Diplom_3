@@ -27,11 +27,17 @@ class MainPageLocators:
 
     KREST = (By.XPATH, ".//section[contains(@class, 'Modal_modal_opened')]//div/button[contains(@class, 'close')]")
 
-    IDENTIFITATOR = (By.XPATH, ".//p[(text()='идентификатор заказа')]")
+    IDENTIFICATOR_PHRASE = (By.XPATH, ".//p[(text()='идентификатор заказа')]")
 
     BASKET = (By.XPATH, ".//ul[contains(@class, 'BurgerConstructor_basket__list')]")
 
     COUNTER_INCREASED = (By.XPATH, ".//p[(text()='1976')]")
+
+    POPUP_NEW_ORDER_WINDOW = (By.XPATH, ".//h2[contains(@class, 'text_type_digits-large')]")
+
+   # CLOSE_POPUP_NEW_ORDER_WINDOW = (By.XPATH, )
+
+
 
 
 

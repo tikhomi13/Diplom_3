@@ -5,4 +5,19 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class FeedPage:
 
-    print(123)
+    def click_an_order(self):
+
+        pass
+
+    def get_order_details_popup(self):
+
+        pass
+
+
+   # def create_order(self):
+
+       # pass
+
+  #  def go_to_orders_story(self): нет это в Main Page
+
+

@@ -82,7 +82,7 @@ class MainPage(BasePage):
 
     def get_order_identifier(self):
 
-        id_id = self.wait_and_find_element(MainPageLocators.IDENTIFITATOR)
+        id_id = self.wait_and_find_element(MainPageLocators.IDENTIFICATOR_PHRASE)
         return id_id
 
     def move_bun_to_order(self):
@@ -98,6 +98,31 @@ class MainPage(BasePage):
 
         counter = self.wait_and_find_element(MainPageLocators.COUNTER_INCREASED)
         return counter
+
+
+    def place_an_order(self): # ПРОВЕРИТЬ
+
+       # move_bun = self.move_bun_to_order()
+
+        add_ingredient = self.wait_and_find_element(MainPageLocators.BUN_IN_CONSTRUCTOR)
+        order = self.wait_and_find_element(MainPageLocators.BASKET)
+        drag_and_drop(self.driver, add_ingredient, order)
+
+        place_an_order_button = self.wait_and_find_element(MainPageLocators.PLACE_AN_ORDER_BUTTON)
+        place_an_order_button.click()
+
+    def get_and_save_new_order_number(self):
+
+        popup_new_order_window = self.wait_and_find_element(MainPageLocators.POPUP_NEW_ORDER_WINDOW)
+
+        print(popup_new_order_window.text)
+
+        return popup_new_order_window.text
+
+
+
+
+
 
 
 
