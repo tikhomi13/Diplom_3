@@ -42,6 +42,25 @@ class LkPage(BasePage):
 
         return OrderStoryPage(self.driver)
 
+    def scroll_to_last_order(self):  # доработать
+
+        element_to_scroll = self.wait_and_find_element(MainPageLocators.LAST_ORDER)
+
+        WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(MainPageLocators.LAST_ORDER))
+
+        self.driver.execute_script("arguments[0]. scrollIntoView();", element_to_scroll)
+
+        return element_to_scroll
+
+
+    # в ленте заказов крутим до элемента с нашим номером
+
+
+
+
+
+
+
 
 
 

@@ -23,7 +23,8 @@ from data import get_sign_up_data
 
 
 
-@pytest.fixture(params=['chrome', 'firefox'])
+#@pytest.fixture(params=['chrome', 'firefox'])
+@pytest.fixture(params=['firefox', 'chrome'])
 def driver(request):
     if request.param == 'chrome':
 
@@ -79,6 +80,8 @@ def register_and_authorize(driver, generator):  # рабочая версия к
 
     # Ожидание кнопки "Зарегистрироваться" на экране логина
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable(LoginPageLocators.REGISTER_BUTTON_ON_LOGIN_SCREEN))
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable(LoginPageLocators.REGISTER_BUTTON_ON_LOGIN_SCREEN))
+
     driver.find_element(*LoginPageLocators.REGISTER_BUTTON_ON_LOGIN_SCREEN).click() # Клик по кнопке "Зарегистрироваться" на экране логина
 
     # Ожидание для полей Имя, Email, Пароль

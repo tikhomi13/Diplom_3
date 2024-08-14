@@ -35,7 +35,9 @@ class MainPageLocators:
 
     POPUP_NEW_ORDER_WINDOW = (By.XPATH, ".//h2[contains(@class, 'text_type_digits-large')]")
 
-   # CLOSE_POPUP_NEW_ORDER_WINDOW = (By.XPATH, )
+    INVALID_ORDER_NUMBER_9999 = (By.XPATH, ".//h2[(text()='9999')]")
+
+    LAST_ORDER = (By.XPATH, ".//li[contains(@class, 'OrderHistory_listItem')][last()]")
 
 
 

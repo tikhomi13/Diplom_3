@@ -39,7 +39,7 @@ class MainPage(BasePage):
         WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located(MainPageLocators.EXCESS_ELEMENT))
         time.sleep(1) # защита от элемента - без ожидания падает фаерфокс
 
-        to_feed = self.wait_and_find_element(MainPageLocators.GO_TO_FEED).click()
+        self.wait_and_find_element(MainPageLocators.GO_TO_FEED).click()
 
     def get_phrase_lenta_zakazov(self):
 
@@ -60,6 +60,8 @@ class MainPage(BasePage):
         return get_ingredient_details
 
     def close_details_window(self):
+
+        time.sleep(2)
 
         krest = self.wait_and_find_element(MainPageLocators.KREST)
         krest.click()
@@ -100,7 +102,7 @@ class MainPage(BasePage):
         return counter
 
 
-    def place_an_order(self): # ПРОВЕРИТЬ
+    def place_an_order(self): # ПРОВЕРИТЬ тут добавляем ингредиент
 
        # move_bun = self.move_bun_to_order()
 
@@ -108,12 +110,19 @@ class MainPage(BasePage):
         order = self.wait_and_find_element(MainPageLocators.BASKET)
         drag_and_drop(self.driver, add_ingredient, order)
 
+        WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located(MainPageLocators.EXCESS_ELEMENT))
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(MainPageLocators.PLACE_AN_ORDER_BUTTON)) #visibility?
+        time.sleep(1)   # - для Firefox
+
         place_an_order_button = self.wait_and_find_element(MainPageLocators.PLACE_AN_ORDER_BUTTON)
         place_an_order_button.click()
 
     def get_and_save_new_order_number(self):
 
         popup_new_order_window = self.wait_and_find_element(MainPageLocators.POPUP_NEW_ORDER_WINDOW)
+
+        WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located(MainPageLocators.INVALID_ORDER_NUMBER_9999))
+        # ждем пока исчезнут девятки
 
         print(popup_new_order_window.text)
 
