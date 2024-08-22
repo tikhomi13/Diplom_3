@@ -1,16 +1,8 @@
-from selenium.webdriver.common.by import By
-from selenium import webdriver
-import allure
 import time
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from pages.main_page import MainPage
-from pages.base_page import BasePage
 from pages.lk_page import LkPage
 from pages.feed_page import FeedPage
-from locators.main_page_locators import MainPageLocators
 from pages.login_page import LoginPage
-from pages.order_story_page import OrderStoryPage
 
 
 class TestFeed:
@@ -47,7 +39,6 @@ class TestFeed:
 
         number = create_order.get_and_save_new_order_number() # записываем номер созданного заказа в переменную
 
-        print(create_order.get_and_save_new_order_number())
         create_order.close_details_window()
         create_order.click_personal_account_button_in_header()
 
@@ -59,8 +50,6 @@ class TestFeed:
         # теперь скрипт прокрутки
 
         go_to_personal_account.scroll_to_last_order()
-        print(go_to_personal_account.scroll_to_last_order().text)   # тут номер заказа
-
         go_to_feed = MainPage(driver)
         go_to_feed.go_to_feed()
 
@@ -68,7 +57,6 @@ class TestFeed:
         get_first_order.get_first_order_of_feed_list()
 
         get_first_order.check_order_number()
-        print(get_first_order.check_order_number())
 
         time.sleep(3)
 
@@ -83,7 +71,7 @@ class TestFeed:
 
     def test_overall_counter_increases_after_creating_order_success(self, driver, register_and_authorize):
 
-        # фиксируем значение счетчика
+        # фиксируем значение счетчика №№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№
 
         feed = MainPage(driver)
         feed.go_to_feed()
@@ -106,22 +94,13 @@ class TestFeed:
         create_order.close_details_window()
 
         time.sleep(3)
-
         create_order.go_to_feed()
 
         time.sleep(2)
-
         back_to_feed = FeedPage(driver)
 
-      #  back_to_feed.go_
-
         count_of_orders_after_addind_one = back_to_feed.get_overall_counter()
-        print(get_overall_counter.get_overall_counter())
-        print(count_of_orders)
-        print(count_of_orders_after_addind_one)
-
         assert int(count_of_orders_after_addind_one) > int(count_of_orders)
-
         assert (int(count_of_orders) + 1 ) == int(count_of_orders_after_addind_one)
 
     def test_today_counter_increases_after_creating_order_success(self, driver, register_and_authorize):
@@ -145,23 +124,15 @@ class TestFeed:
         create_order.close_details_window()
 
         time.sleep(3)
-
         create_order.go_to_feed()
 
         time.sleep(2)
-
         back_to_feed = FeedPage(driver)
 
         count_of_orders_after_addind_one = back_to_feed.get_daily_counter()
-
-      #  print(get_overall_counter.get_overall_counter())
-        print(count_of_orders)
-        print(count_of_orders_after_addind_one)
-
         assert (int(count_of_orders) + 1 ) == int(count_of_orders_after_addind_one)
 
         # если что просто поставить >
-
 
 
     def test_order_number_appears_at_in_progress_section_afted_creating_order_success(self, driver, register_and_authorize):
@@ -183,17 +154,4 @@ class TestFeed:
         print(get_number.check_if_created_order_has_appeared_at_in_progress_section())
 
         assert order_number_after_creating_order in order_number_at_in_progress_sector
-
-
-# продолжить тут
-
-# И добавить методы удаления юзера 
-
-
-
-
-
-
-
-
 
