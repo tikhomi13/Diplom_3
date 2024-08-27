@@ -1,12 +1,11 @@
-import allure
 import time
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+
+import allure
 from pages.main_page import MainPage
 from pages.lk_page import LkPage
-from locators.main_page_locators import MainPageLocators
 from pages.login_page import LoginPage
 from pages.order_story_page import OrderStoryPage
+from pages.base_page import BasePage
 
 
 class TestLkPage:
@@ -26,12 +25,11 @@ class TestLkPage:
         click = MainPage(driver)
         click.click_personal_account_button_in_header()
 
-        WebDriverWait(driver, 10).until(EC.invisibility_of_element_located(MainPageLocators.EXCESS_ELEMENT))
+        base_page = BasePage(driver)
+        base_page.wait_for_excess_element_to_disappear()
 
         personal_account_page = LkPage(driver)
         personal_account_page.go_to_order_story_page()
-
-        time.sleep(3)
 
         order_story_page = OrderStoryPage(driver)
         order_story_page.return_active_button_go_to_orders()
@@ -46,9 +44,11 @@ class TestLkPage:
         click.click_personal_account_button_in_header()
 
         logout = LkPage(driver)
-        WebDriverWait(driver, 10).until(EC.invisibility_of_element_located(MainPageLocators.EXCESS_ELEMENT))
-        logout.logout()
 
+        base_page = BasePage(driver)
+        base_page.wait_for_excess_element_to_disappear()
+
+        logout.logout()
         login_page = LoginPage(driver)
         login_page.get_vhod_text_on_login_page()
 

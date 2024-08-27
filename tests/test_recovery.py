@@ -1,5 +1,4 @@
 import allure
-import time
 from pages.recover_page import RecoverPage
 from pages.forgot_password_page import ForgotPasswordPage
 from pages.set_new_password_page import SetNewPasswordPage
