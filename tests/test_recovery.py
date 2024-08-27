@@ -12,19 +12,16 @@ class TestRecoverPage:
 
         go_to_recover_page = RecoverPage(driver)
         go_to_recover_page.go_to_recover_page()
-
-        time.sleep(4)
         recover = ForgotPasswordPage(driver)
 
         assert recover.return_phrase().text == 'Восстановление пароля'
 
     @allure.title("Ввод почты и клик по кнопке Восстановить")
-    def test_enter_email_and_click_recover_button_success_transition(self, driver):  # работает
+    def test_enter_email_and_click_recover_button_success_transition(self, driver):
 
         go_to_recover_page = RecoverPage(driver)
         go_to_recover_page.go_to_recover_page()
 
-        # time.sleep(2)
         recover = ForgotPasswordPage(driver)
         recover.click_recover_button()
 
@@ -44,6 +41,5 @@ class TestRecoverPage:
 
         set_password = SetNewPasswordPage(driver)
         set_password.make_password_visible()
-        # set_password.set_password()  # ввод пароля здесь не нужен
 
         assert set_password.check_field_highlighted_if_password_visible().is_displayed()

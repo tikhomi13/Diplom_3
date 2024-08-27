@@ -1,25 +1,15 @@
 import time
-
 import allure
-
 from pages.base_page import BasePage
 from locators.lk_page_locators import LkPageLocators
 from locators.main_page_locators import MainPageLocators
-from locators.order_story_locators import OrderStoryLocators
-
 from pages.login_page import LoginPage
-
 from pages.order_story_page import OrderStoryPage
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium import webdriver
 
 
 class LkPage(BasePage):
-
-
-    #def create_
-
 
     @allure.title("Кнопка выхода")
     def logout(self):
@@ -42,7 +32,8 @@ class LkPage(BasePage):
 
         return OrderStoryPage(self.driver)
 
-    def scroll_to_last_order(self):  # доработать
+    @allure.title('Метод скролла')
+    def scroll_to_last_order(self):
 
         element_to_scroll = self.wait_and_find_element(MainPageLocators.LAST_ORDER)
 
@@ -51,19 +42,3 @@ class LkPage(BasePage):
         self.driver.execute_script("arguments[0]. scrollIntoView();", element_to_scroll)
 
         return element_to_scroll
-
-
-    # в ленте заказов крутим до элемента с нашим номером
-
-
-
-
-
-
-
-
-
-
-
-
-

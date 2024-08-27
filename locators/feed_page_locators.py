@@ -1,5 +1,5 @@
-import allure
 from selenium.webdriver.common.by import By
+
 
 class FeedPageLocators:
 
@@ -19,15 +19,7 @@ class FeedPageLocators:
 
     GO_TO_CONSTRUCTOR = (By.XPATH, ".//p[(text()='Конструктор')]/ancestor::a[@href='/']")
 
-
-
-
-
-
-
-
     NOMER_ZAKAZA_V_RAZDELE_V_RABOTE = (By.XPATH, '//h2[@class="Modal_modal__title_shadow__3ikwq Modal_modal__title__2L34m text text_type_digits-large mb-8" and contains(text(), "7")]')
-    # ИЗМЕНИТЬ !!!
-    # Либо: - тоже изменить
+
     ORDER_IN_WORK = (By.XPATH, "(//li[contains(@class, 'text text_type_digits-default mb-2')])[6][1]")
 

@@ -1,21 +1,7 @@
-import time
 from pages.main_page import MainPage
-from pages.login_page import LoginPage
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.common.by import By
-from selenium import webdriver
 
 
-
-# думаю нужен не отдельный файл а просто удаление созланного юера в файле теста
-
-# тут рассмотреть код из вебинара
-
-# Удаление юзера реализовать здесь
-
-class TestLoginPage: # переименовать
-
-
+class TestLMainPage:
 
     def test_go_to_constructor(self, driver):
 
@@ -37,7 +23,6 @@ class TestLoginPage: # переименовать
         click_bun_ingredient.click_ingredient_and_go_to_window()
 
         assert click_bun_ingredient.get_text_ingredient_details().is_displayed()
-        # так
 
     def test_close_window_click_the_cross_success(self, driver):
 
@@ -47,8 +32,7 @@ class TestLoginPage: # переименовать
 
         assert click_bun_ingredient.check_ingredient_is_clickable_again()
 
-
-    def test_adding_ingredient_increases_its_counter(self, driver):  # passed
+    def test_adding_ingredient_increases_its_counter(self, driver):
 
         move_ingredient = MainPage(driver)
 
@@ -62,24 +46,5 @@ class TestLoginPage: # переименовать
         place_an_order.press_place_an_order()
 
         assert place_an_order.get_order_identifier().is_displayed()
-
-
-        # ПРодолжить тут. Тестировать Раздел «Лента заказов»
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
