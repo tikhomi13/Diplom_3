@@ -28,8 +28,8 @@ def driver(request):
         firefox_driver.maximize_window()
         firefox_driver.get(URLs.BASE_URL)
 
-        WebDriverWait(firefox_driver, 20).until(
-            EC.visibility_of_element_located(MainPageLocators.STELLAR_BURGERS_LOGO_CSS))
+     #   WebDriverWait(firefox_driver, 20).until(
+      #      EC.visibility_of_element_located(MainPageLocators.STELLAR_BURGERS_LOGO_CSS))
         yield firefox_driver
         firefox_driver.quit()
 
@@ -68,4 +68,4 @@ def register_and_authorize(driver, generator):
     driver.find_element(*LoginPageLocators.LOG_IN_BUTTON_ON_LOGIN_SCREEN).click()
     base_page.wait_go_to_account_header()
 
-    return register_and_authorize
+   # return register_and_authorize
