@@ -28,8 +28,6 @@ def driver(request):
         firefox_driver.maximize_window()
         firefox_driver.get(URLs.BASE_URL)
 
-     #   WebDriverWait(firefox_driver, 20).until(
-      #      EC.visibility_of_element_located(MainPageLocators.STELLAR_BURGERS_LOGO_CSS))
         yield firefox_driver
         firefox_driver.quit()
 
