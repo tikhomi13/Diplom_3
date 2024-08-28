@@ -1,7 +1,5 @@
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-import time
 from pages.base_page import BasePage
+import time
 from locators.main_page_locators import MainPageLocators
 from seletools.actions import drag_and_drop
 import allure
@@ -18,17 +16,17 @@ class MainPage(BasePage):
     @allure.step('Клик по кнопке перехода в ЛК в хедере')
     def click_personal_account_button_in_header(self):
 
-        time.sleep(2) # БЕЗ ЭТОГО НИЧЕГО НЕ РАБОТАЕТ
-
         base_page = BasePage(self.driver)
+        base_page.extra_wait()
         base_page.wait_go_to_account_header()
         self.driver.find_element(*MainPageLocators.GO_TO_ACCOUNT_FROM_HEADER).click()
 
     @allure.step('Клик по кнопке перехода в конструктор')
     def go_to_constructor(self):
 
-        WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located(MainPageLocators.EXCESS_ELEMENT))
-        time.sleep(1)
+        base_page = BasePage(self.driver)
+        base_page.wait_for_excess_element_to_disappear()
+        base_page.extra_wait()
 
         self.wait_and_find_element(MainPageLocators.GO_TO_CONSTRUCTOR_FROM_HEADER).click()
 
@@ -42,22 +40,29 @@ class MainPage(BasePage):
     def go_to_feed(self):
 
         base_page = BasePage(self.driver)
-        base_page.wait_go_to_account_header()
+        base_page.extra_wait()
 
+        base_page.wait_go_to_account_header()
         base_page.wait_feed()
+
+        self.wait_and_find_element(MainPageLocators.GO_TO_FEED).click()
+
 
     @allure.step('Получение фразы Лента заказов')
     def get_phrase_lenta_zakazov(self):
 
         get_text = self.wait_and_find_element(MainPageLocators.LENTA_ZAKAZOV_PHRASE_IN_ORDERS_FEED)
-        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(MainPageLocators.LENTA_ZAKAZOV_PHRASE_IN_ORDERS_FEED))
+
+        base_page = BasePage(self.driver)
+        base_page.wait_for_element_orders_feed()
 
         return get_text
 
     @allure.step('Проверка кликабельности кнопки Сделать заказ')
     def lk_clickable(self):
 
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(MainPageLocators.GO_TO_ACCOUNT_FROM_HEADER))
+        base_page = BasePage(self.driver)
+        base_page.wait_go_to_account_header()
 
         return MainPageLocators.GO_TO_ACCOUNT_FROM_HEADER
 
@@ -65,8 +70,9 @@ class MainPage(BasePage):
     @allure.title('Клик по ингредиенту и переход в окно ингредиента')
     def click_ingredient_and_go_to_window(self):
 
-        WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located(MainPageLocators.EXCESS_ELEMENT))
-        time.sleep(1)
+        base_page = BasePage(self.driver)
+        base_page.wait_for_excess_element_to_disappear()
+        base_page.extra_wait()
 
         click_bun = self.wait_and_find_element(MainPageLocators.BUN_IN_CONSTRUCTOR)
         click_bun.click()
@@ -80,7 +86,8 @@ class MainPage(BasePage):
     @allure.title('Закрыть окно с деталями - крест')
     def close_details_window(self):
 
-        time.sleep(2)
+        base_page = BasePage(self.driver)
+        base_page.extra_wait()
 
         krest = self.wait_and_find_element(MainPageLocators.KREST)
         krest.click()
@@ -88,23 +95,20 @@ class MainPage(BasePage):
     @allure.title('Проверка кликабельности ингредиента')
     def check_ingredient_is_clickable_again(self):
 
+        base_page = BasePage(self.driver)
         bun_ingredient = self.wait_and_find_element(MainPageLocators.BUN_IN_CONSTRUCTOR)
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(MainPageLocators.BUN_IN_CONSTRUCTOR))
 
+        base_page.wait_bun_in_constructor()
         return bun_ingredient
 
     @allure.title('Нажатия кнопки сделать заказ')
     def press_place_an_order(self):
 
-        time.sleep(2)
-
         base_page = BasePage(self.driver)
         base_page.wait_for_excess_element_to_disappear()
 
-        time.sleep(2)
-
-        base_page.wait_go_to_account_header()
-        base_page.wait_for_excess_element_to_disappear() #
+        base_page.extra_wait()
+        base_page.wait_for_excess_element_to_disappear()
 
         place_and_order = self.wait_and_find_element(MainPageLocators.PLACE_AN_ORDER_BUTTON)
         place_and_order.click()
@@ -128,6 +132,10 @@ class MainPage(BasePage):
         counter = self.wait_and_find_element(MainPageLocators.COUNTER_INCREASED)
         return counter
 
+    def sleep(self):
+
+        time.sleep(4)
+
     @allure.title('Сделать заказ - добавить ингредиент и кликнуть')
     def place_an_order(self):
 
@@ -149,8 +157,5 @@ class MainPage(BasePage):
         base_page = BasePage(self.driver)
         base_page.wait_for_valid_order_number()
 
+        print(popup_new_order_window.text) # УБРАТЬ
         return popup_new_order_window.text
-
-    def sleep(self):
-
-        time.sleep(1)

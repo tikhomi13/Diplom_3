@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from locators.main_page_locators import MainPageLocators
 from locators.login_page_locators import LoginPageLocators
 from locators.register_page_locators import RegisterPageLocators
+from locators.set_new_password_page_locators import SetNewPasswordPageLocators
 
 
 class BasePage:
@@ -86,7 +87,7 @@ class BasePage:
     @allure.step('Ожидание для полей')
     def wait_for_fields_2(self):
 
-        time.sleep(5)  # БЕЗ ЭТОГО НИЧЕГО НЕ РАБОТАЕТ
+        time.sleep(5)  # БЕЗ ЭТОГО НИЧЕГО НЕ РАБОТАЕТ, поля не грузутся
 
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(LoginPageLocators.EMAIL_FIELD))
         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(LoginPageLocators.EMAIL_FIELD))
@@ -116,22 +117,16 @@ class BasePage:
 
         WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located(MainPageLocators.EXCESS_ELEMENT))
 
-
-
-
-       # time.sleep(1) # защита от элемента
-
     @allure.step('Ожидание кнопки размещения заказа')
     def wait_for_place_an_order_button(self):
 
         WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located(MainPageLocators.EXCESS_ELEMENT))
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(MainPageLocators.PLACE_AN_ORDER_BUTTON))
-       # time.sleep(1)   # - для Firefox
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(MainPageLocators.PLACE_AN_ORDER_BUTTON)) #
 
     @allure.step('Ожидание Исчезноваения девяток')
     def wait_for_valid_order_number(self):
 
-        WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located(MainPageLocators.INVALID_ORDER_NUMBER_9999)) # ждем пока исчезнут девятки
+        WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located(MainPageLocators.INVALID_ORDER_NUMBER_9999))
 
     @allure.step('Прокрутка')
     def scroll_to_last_order(self):
@@ -154,10 +149,19 @@ class BasePage:
 
         self.wait_and_find_element(MainPageLocators.GO_TO_FEED).click()
 
+    def wait_bun_in_constructor(self):
 
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(MainPageLocators.BUN_IN_CONSTRUCTOR))
 
+    def extra_wait(self):
 
+        time.sleep(4)
 
+    def wait_password_button(self):
 
+        WebDriverWait(self.driver, 8).until(EC.element_to_be_clickable(SetNewPasswordPageLocators.SAVE_NEW_PASSWORD_BUTTON))
 
+    def wait_show_password_button(self):
+
+        WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable(SetNewPasswordPageLocators.SHOW_PASSWORD))
 

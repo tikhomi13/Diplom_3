@@ -1,5 +1,3 @@
-import time
-
 import allure
 from pages.main_page import MainPage
 from pages.lk_page import LkPage
@@ -41,6 +39,7 @@ class TestLkPage:
     def test_exit_personal_account_press_exit_button_success(self, driver, register_and_authorize):
 
         click = MainPage(driver)
+        click.extra_wait()
         click.click_personal_account_button_in_header()
 
         logout = LkPage(driver)
