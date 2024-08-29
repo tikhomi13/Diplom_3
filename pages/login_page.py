@@ -43,39 +43,8 @@ class LoginPage(BasePage):
     @allure.step('Заполнение логина пароля')
     def fill_email_and_password_on_login_page(self, email, password):
 
-    #    return_registration_data = RegisterPage
-    #    return_registration_data.fill_registration_fields()     ###
-
-
-
-
-
-
-
-     #   name, email, password = generator()   # вот это надо на что-то поменять
-
         self.driver.find_element(*LoginPageLocators.EMAIL_FIELD).send_keys(email)
         self.driver.find_element(*LoginPageLocators.PASSWORD_FIELD).send_keys(password)
-
-
-
-        time.sleep(6)
-
-    @allure.step('Заполнение поля логина')
-    def fill_email_on_login_page(self, email):
-
-        main_page = MainPage(self.driver)
-        main_page.wait_for_excess_element_to_disappear()
-
-        email_field = self.wait_and_find_element(LoginPageLocators.EMAIL_FIELD)
-        email_field.send_keys(email)
-
-
-    @allure.step('Заполнение поля пароля')
-    def fill_password_on_login_page(self, password):
-
-        password_field = self.wait_and_find_element(LoginPageLocators.PASSWORD_FIELD)
-        password_field.send_keys(password)
 
     @allure.step('проверяем что кнопка не активна до нажатия')
     def wait_until_log_butt_not_active(self):

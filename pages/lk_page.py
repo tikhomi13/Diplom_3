@@ -1,3 +1,5 @@
+import time
+
 import allure
 from pages.base_page import BasePage
 from locators.lk_page_locators import LkPageLocators
@@ -7,6 +9,8 @@ class LkPage(BasePage):
 
     @allure.step("Кнопка выхода")
     def logout(self):
+
+        time.sleep(4)
 
         self.find_element_located(LkPageLocators.EXIT_BUTTON, 8)
         logout = self.wait_and_find_element(LkPageLocators.EXIT_BUTTON)
