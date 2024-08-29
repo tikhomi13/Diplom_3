@@ -43,10 +43,7 @@ class TestLkPage:
         logout = LkPage(driver)
         click.wait_for_excess_element_to_disappear() # наследуется
 
-       # time.sleep(5)
-
         logout.logout()
-
         login_page = LoginPage(driver)
         login_page.get_vhod_text_on_login_page()
 

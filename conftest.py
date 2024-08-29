@@ -48,7 +48,7 @@ def register_and_authorize(driver):
     register_page.wait_for_register_button_2()
     register_page.press_register()
 
-  #  time.sleep(4) # Вот тайм слип, без которого не работает. < --------------------------
+    time.sleep(1)      # Вот тайм слип, без которого не работает. < --------------------------
 
     login_page.fill_email_and_password_on_login_page(email, password) # ЗАПОЛНЕНИЕ ПОЛЕЙ
 
