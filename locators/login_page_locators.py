@@ -9,9 +9,13 @@ class LoginPageLocators:
 
     REGISTER_BUTTON_ON_LOGIN_SCREEN = (By.XPATH, ".//a[@href='/register' and (text()='Зарегистрироваться')]")             # Кнопка 'Зарегистрироваться' на экране логина
 
-    NAME_FIELD = (By.XPATH, ".//label[contains(text(), 'Имя')]/following-sibling::input[@type='text']")                   # Поле "Имя"
+  #  NAME_FIELD = (By.XPATH, ".//label[contains(text(), 'Имя')]/following-sibling::input[@type='text']")                   # Поле "Имя"
 
     EMAIL_FIELD = (By.XPATH, ".//div/label[contains(text(), 'Email')]/following-sibling::input[@type='text']")            # Поле 'Email'
+
+    EMAIL_FIELD_2 = (By.XPATH, "//input[@name='name']")
+
+    EMAIL_FIELD_3 = (By.XPATH, "//label[text()='Email']/following-sibling::input[1]")
 
     PASSWORD_FIELD = (By.XPATH, ".//fieldset//input[@name='Пароль']")                                                     # Поле 'Пароль'
 

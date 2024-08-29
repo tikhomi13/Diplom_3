@@ -27,6 +27,10 @@ class MainPage(BasePage):
 
 
 
+
+
+
+
     @allure.step('Клик по кнопке перехода в конструктор')
     def go_to_constructor(self):
 

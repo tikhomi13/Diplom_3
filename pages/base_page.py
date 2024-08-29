@@ -62,6 +62,9 @@ class BasePage:
 
 
 
+
+
+
     @allure.step('Ожидание для последнего заказа')
     def wait_for_last_order(self):
 

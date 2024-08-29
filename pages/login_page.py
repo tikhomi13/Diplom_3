@@ -7,6 +7,8 @@ import time
 from pages.register_page import RegisterPage
 from helper import generator
 from pages.main_page import MainPage
+from selenium.webdriver.common.by import By
+
 
 
 class LoginPage(BasePage):
@@ -43,15 +45,11 @@ class LoginPage(BasePage):
     @allure.step('Заполнение логина пароля')
     def fill_email_and_password_on_login_page(self, email, password):
 
-        self.driver.find_element(*LoginPageLocators.EMAIL_FIELD).send_keys(email)
-        self.driver.find_element(*LoginPageLocators.PASSWORD_FIELD).send_keys(password)
+        put_in_login = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((LoginPageLocators.EMAIL_FIELD_3)))   #
+        put_in_login.send_keys(email)
 
-    @allure.step('проверяем что кнопка не активна до нажатия')
-    def wait_until_log_butt_not_active(self):
-
-        WebDriverWait(self.driver, 10).until(
-            EC.invisibility_of_element_located(LoginPageLocators.LOGIN_BUTTON_ACTIVE))
-
+        put_in_password = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(LoginPageLocators.PASSWORD_FIELD))
+        put_in_password.send_keys(password)
 
 
     @allure.step('Ожидание и клик по кнопке входа')
@@ -61,4 +59,3 @@ class LoginPage(BasePage):
             EC.element_to_be_clickable(LoginPageLocators.LOG_IN_BUTTON_ON_LOGIN_SCREEN))
 
         self.driver.find_element(*LoginPageLocators.LOG_IN_BUTTON_ON_LOGIN_SCREEN).click()
-
