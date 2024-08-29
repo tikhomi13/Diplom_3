@@ -3,7 +3,6 @@ from pages.main_page import MainPage
 from pages.lk_page import LkPage
 from pages.login_page import LoginPage
 from pages.order_story_page import OrderStoryPage
-from pages.base_page import BasePage
 
 
 class TestLkPage:
@@ -22,9 +21,7 @@ class TestLkPage:
 
         click = MainPage(driver)
         click.click_personal_account_button_in_header()
-
-        base_page = BasePage(driver)
-        base_page.wait_for_excess_element_to_disappear()
+        click.wait_for_excess_element_to_disappear()
 
         personal_account_page = LkPage(driver)
         personal_account_page.go_to_order_story_page()
@@ -39,15 +36,12 @@ class TestLkPage:
     def test_exit_personal_account_press_exit_button_success(self, driver, register_and_authorize):
 
         click = MainPage(driver)
-        click.extra_wait()
         click.click_personal_account_button_in_header()
 
         logout = LkPage(driver)
-
-        base_page = BasePage(driver)
-        base_page.wait_for_excess_element_to_disappear()
-
+        click.wait_for_excess_element_to_disappear() # наследуется
         logout.logout()
+
         login_page = LoginPage(driver)
         login_page.get_vhod_text_on_login_page()
 

@@ -2,14 +2,22 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+import requests
+
+import helper
 from data import URLs
 from locators.main_page_locators import MainPageLocators
 from locators.login_page_locators import LoginPageLocators
 from locators.register_page_locators import RegisterPageLocators
-from helper import get_sign_up_data
+#rom helper import get_sign_up_data
 from pages.base_page import BasePage
+from pages.main_page import MainPage
+from pages.login_page import LoginPage
+from pages.register_page import RegisterPage
+#from helper import get_sign_up_data
 
-@pytest.fixture(params=['firefox', 'chrome'])  #
+
+@pytest.fixture(params=['chrome'])  # 'firefox',
 def driver(request):
     if request.param == 'chrome':
 
@@ -31,39 +39,50 @@ def driver(request):
         yield firefox_driver
         firefox_driver.quit()
 
-@pytest.fixture
-def generator(driver):
-    name, email, password = get_sign_up_data()
-    return name, email, password
+#@pytest.fixture
+#def generator(driver):
+##    name, email, password = get_sign_up_data()
+ #   return name, email, password
 
 @pytest.fixture
-def register_and_authorize(driver, generator):
+def register_and_authorize(driver):
 
-    name, email, password = generator
+   # name, email, password = generator
 
-    base_page = BasePage(driver)
-    base_page.wait_for_login_button_mainpage()
-    driver.find_element(*MainPageLocators.LOGIN_BUTTON_MAINPAGE).click()
+    main_page = MainPage(driver)
+    main_page.wait_for_login_button_mainpage()
+    main_page.click_login_button_on_main_page()
 
-    base_page.wait_for_register_button()
-    driver.find_element(*LoginPageLocators.REGISTER_BUTTON_ON_LOGIN_SCREEN).click()
-    base_page.wait_for_fields()
+    login_page = LoginPage(driver)
+    login_page.wait_for_register_button()
+    login_page.click_register_button_on_login_screen()
 
-    driver.find_element(*RegisterPageLocators.NAME_FIELD).send_keys(name)
-    driver.find_element(*RegisterPageLocators.EMAIL_FIELD).send_keys(email)
-    driver.find_element(*RegisterPageLocators.PASSWORD_FIELD).send_keys(password)
+    register_page = RegisterPage(driver)
+    register_page.wait_for_fields_on_register_page()
 
-    base_page.wait_for_register_button_2()
+    email, password = register_page.fill_registration_fields()
 
-    driver.find_element(*RegisterPageLocators.REGISTER_BUTTON).click()
-    base_page.wait_for_fields_2()
+    register_page.wait_for_register_button_2()
+    register_page.press_register()
 
-    driver.find_element(*LoginPageLocators.EMAIL_FIELD).send_keys(email)
-    driver.find_element(*LoginPageLocators.PASSWORD_FIELD).send_keys(password)
+    login_page.wait_for_fields_on_login_page()
+    login_page.fill_email_and_password_on_login_page(email, password)
 
-    base_page.wait_for_login_button()
+    login_page.click_login_button()
 
-    driver.find_element(*LoginPageLocators.LOG_IN_BUTTON_ON_LOGIN_SCREEN).click()
-    base_page.wait_go_to_account_header()
+    main_page.wait_go_to_account_header()
 
-   # return register_and_authorize
+
+def create_delete_user(payload, remove):
+
+    response = req
+
+def generate_user_data():
+
+    payload = helper.generate_user_data()
+
+    print(payload) # убрать
+    return payload
+
+
+

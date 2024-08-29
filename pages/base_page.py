@@ -48,74 +48,44 @@ class BasePage:
         windows_after = self.driver.switch_to.window(window_before[-1])
         return windows_after
 
-    @allure.step('Ожидание кнопки входа')
-    def wait_for_login_button_mainpage(self):
 
-        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(MainPageLocators.LOGIN_BUTTON_MAINPAGE))
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(MainPageLocators.LOGIN_BUTTON_MAINPAGE))
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(MainPageLocators.LOGIN_BUTTON_MAINPAGE))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @allure.step('Ожидание исчезноваения мешающего элемента ')
+    def wait_for_excess_element_to_disappear(self):
+
         WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located(MainPageLocators.EXCESS_ELEMENT))
 
-    @allure.step('Ожидание кнопки Зарегистрироваться на экране логина')
-    def wait_for_register_button(self):
+        WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located(MainPageLocators.EXCESS_ELEMENT_1))
 
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(LoginPageLocators.REGISTER_BUTTON_ON_LOGIN_SCREEN))
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(LoginPageLocators.REGISTER_BUTTON_ON_LOGIN_SCREEN))
+        WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located(MainPageLocators.EXCESS_ELEMENT_2))
 
-    @allure.step('Ожидание для полей')
-    def wait_for_fields(self):
 
-        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located(LoginPageLocators.NAME_FIELD))
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(LoginPageLocators.NAME_FIELD))
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(LoginPageLocators.NAME_FIELD))
 
-        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(LoginPageLocators.EMAIL_FIELD))
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(LoginPageLocators.EMAIL_FIELD))
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(LoginPageLocators.EMAIL_FIELD))
 
-        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(LoginPageLocators.PASSWORD_FIELD))
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(LoginPageLocators.PASSWORD_FIELD))
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(LoginPageLocators.PASSWORD_FIELD))
 
-    @allure.step('Ожидание кнопки Зарегистрироваться в окне регистрации')
-    def wait_for_register_button_2(self):
 
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(RegisterPageLocators.REGISTER_BUTTON))
-        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(RegisterPageLocators.REGISTER_BUTTON))
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(RegisterPageLocators.REGISTER_BUTTON))
 
-    @allure.step('Ожидание для полей')
-    def wait_for_fields_2(self):
-
-        time.sleep(5)  # БЕЗ ЭТОГО НИЧЕГО НЕ РАБОТАЕТ, поля не грузутся
-
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(LoginPageLocators.EMAIL_FIELD))
-        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(LoginPageLocators.EMAIL_FIELD))
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(LoginPageLocators.EMAIL_FIELD))
-
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(LoginPageLocators.EMAIL_FIELD))
-        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(LoginPageLocators.EMAIL_FIELD))
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(LoginPageLocators.EMAIL_FIELD))
-
-    @allure.step('Ожидание для кнопки логина')
-    def wait_for_login_button(self):
-
-        WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable(LoginPageLocators.LOG_IN_BUTTON_ON_LOGIN_SCREEN))
-
-    @allure.step('Ожидание для кнопки перехода в аккаунт в хедере')
-    def wait_go_to_account_header(self):
-
-        WebDriverWait(self.driver, 8).until(EC.visibility_of_element_located(MainPageLocators.GO_TO_ACCOUNT_FROM_HEADER))
 
     @allure.step('Ожидание для последнего заказа')
     def wait_for_last_order(self):
 
         WebDriverWait(self.driver, 8).until(EC.presence_of_element_located(MainPageLocators.LAST_ORDER))
 
-    @allure.step('Ожидание исчезноваения мешающего элемента ')
-    def wait_for_excess_element_to_disappear(self):
 
-        WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located(MainPageLocators.EXCESS_ELEMENT))
 
     @allure.step('Ожидание кнопки размещения заказа')
     def wait_for_place_an_order_button(self):

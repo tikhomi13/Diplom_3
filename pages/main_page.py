@@ -3,6 +3,8 @@ import time
 from locators.main_page_locators import MainPageLocators
 from seletools.actions import drag_and_drop
 import allure
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class MainPage(BasePage):
@@ -16,10 +18,14 @@ class MainPage(BasePage):
     @allure.step('Клик по кнопке перехода в ЛК в хедере')
     def click_personal_account_button_in_header(self):
 
-        base_page = BasePage(self.driver)
-        base_page.extra_wait()
-        base_page.wait_go_to_account_header()
+
+        WebDriverWait(self.driver, 8).until(
+            EC.visibility_of_element_located(MainPageLocators.GO_TO_ACCOUNT_FROM_HEADER))
+
         self.driver.find_element(*MainPageLocators.GO_TO_ACCOUNT_FROM_HEADER).click()
+
+
+
 
     @allure.step('Клик по кнопке перехода в конструктор')
     def go_to_constructor(self):
@@ -65,6 +71,14 @@ class MainPage(BasePage):
         base_page.wait_go_to_account_header()
 
         return MainPageLocators.GO_TO_ACCOUNT_FROM_HEADER
+
+    @allure.step('Проверка кликабельности кнопки Сделать заказ')
+    def wait_lk_is_clickable(self):
+
+        pass # заполнри
+
+
+
 
 
     @allure.title('Клик по ингредиенту и переход в окно ингредиента')
@@ -159,3 +173,23 @@ class MainPage(BasePage):
 
         print(popup_new_order_window.text) # УБРАТЬ
         return popup_new_order_window.text
+
+
+    @allure.step('Ожидание кнопки входа')
+    def wait_for_login_button_mainpage(self):
+
+        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(MainPageLocators.LOGIN_BUTTON_MAINPAGE))
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(MainPageLocators.LOGIN_BUTTON_MAINPAGE))
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(MainPageLocators.LOGIN_BUTTON_MAINPAGE))
+        WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located(MainPageLocators.EXCESS_ELEMENT))
+
+    def click_login_button_on_main_page(self):
+
+        self.driver.find_element(*MainPageLocators.LOGIN_BUTTON_MAINPAGE).click()
+
+
+    @allure.step('Ожидание для кнопки перехода в аккаунт в хедере')
+    def wait_go_to_account_header(self):
+
+        WebDriverWait(self.driver, 8).until(EC.visibility_of_element_located(MainPageLocators.GO_TO_ACCOUNT_FROM_HEADER))
+
