@@ -6,6 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 from pages.register_page import RegisterPage
 from helper import generator
+from pages.main_page import MainPage
 
 
 class LoginPage(BasePage):
@@ -29,7 +30,7 @@ class LoginPage(BasePage):
     @allure.step('Ожидание для полей логина')
     def wait_for_fields_on_login_page(self):
 
-        time.sleep(5)  # БЕЗ ЭТОГО НИЧЕГО НЕ РАБОТАЕТ, поля не грузутся
+      #  time.sleep(5)  # БЕЗ ЭТОГО НИЧЕГО НЕ РАБОТАЕТ, поля не грузутся
 
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(LoginPageLocators.EMAIL_FIELD))
         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(LoginPageLocators.EMAIL_FIELD))
@@ -49,6 +50,8 @@ class LoginPage(BasePage):
 
 
 
+
+
      #   name, email, password = generator()   # вот это надо на что-то поменять
 
         self.driver.find_element(*LoginPageLocators.EMAIL_FIELD).send_keys(email)
@@ -57,6 +60,30 @@ class LoginPage(BasePage):
 
 
         time.sleep(6)
+
+    @allure.step('Заполнение поля логина')
+    def fill_email_on_login_page(self, email):
+
+        main_page = MainPage(self.driver)
+        main_page.wait_for_excess_element_to_disappear()
+
+        email_field = self.wait_and_find_element(LoginPageLocators.EMAIL_FIELD)
+        email_field.send_keys(email)
+
+
+    @allure.step('Заполнение поля пароля')
+    def fill_password_on_login_page(self, password):
+
+        password_field = self.wait_and_find_element(LoginPageLocators.PASSWORD_FIELD)
+        password_field.send_keys(password)
+
+    @allure.step('проверяем что кнопка не активна до нажатия')
+    def wait_until_log_butt_not_active(self):
+
+        WebDriverWait(self.driver, 10).until(
+            EC.invisibility_of_element_located(LoginPageLocators.LOGIN_BUTTON_ACTIVE))
+
+
 
     @allure.step('Ожидание и клик по кнопке входа')
     def click_login_button(self):

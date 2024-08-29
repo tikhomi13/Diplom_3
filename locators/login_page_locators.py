@@ -14,3 +14,5 @@ class LoginPageLocators:
     EMAIL_FIELD = (By.XPATH, ".//div/label[contains(text(), 'Email')]/following-sibling::input[@type='text']")            # Поле 'Email'
 
     PASSWORD_FIELD = (By.XPATH, ".//fieldset//input[@name='Пароль']")                                                     # Поле 'Пароль'
+
+    LOGIN_BUTTON_ACTIVE = (By.XPATH, ".//div[contains(@class, 'Modal_modal_opened')]")

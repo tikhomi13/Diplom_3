@@ -1,3 +1,5 @@
+import time
+
 import allure
 from pages.main_page import MainPage
 from pages.lk_page import LkPage
@@ -40,6 +42,9 @@ class TestLkPage:
 
         logout = LkPage(driver)
         click.wait_for_excess_element_to_disappear() # наследуется
+
+        time.sleep(5)
+
         logout.logout()
 
         login_page = LoginPage(driver)

@@ -48,29 +48,11 @@ class BasePage:
         windows_after = self.driver.switch_to.window(window_before[-1])
         return windows_after
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @allure.step('Ожидание исчезноваения мешающего элемента ')
     def wait_for_excess_element_to_disappear(self):
 
         WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located(MainPageLocators.EXCESS_ELEMENT))
-
         WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located(MainPageLocators.EXCESS_ELEMENT_1))
-
         WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located(MainPageLocators.EXCESS_ELEMENT_2))
 
 

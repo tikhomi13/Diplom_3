@@ -1,20 +1,11 @@
+import time
+
 import pytest
 from selenium import webdriver
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.wait import WebDriverWait
-import requests
-
-import helper
 from data import URLs
-from locators.main_page_locators import MainPageLocators
-from locators.login_page_locators import LoginPageLocators
-from locators.register_page_locators import RegisterPageLocators
-#rom helper import get_sign_up_data
-from pages.base_page import BasePage
 from pages.main_page import MainPage
 from pages.login_page import LoginPage
 from pages.register_page import RegisterPage
-#from helper import get_sign_up_data
 
 
 @pytest.fixture(params=['chrome'])  # 'firefox',
@@ -39,15 +30,9 @@ def driver(request):
         yield firefox_driver
         firefox_driver.quit()
 
-#@pytest.fixture
-#def generator(driver):
-##    name, email, password = get_sign_up_data()
- #   return name, email, password
 
 @pytest.fixture
 def register_and_authorize(driver):
-
-   # name, email, password = generator
 
     main_page = MainPage(driver)
     main_page.wait_for_login_button_mainpage()
@@ -65,24 +50,18 @@ def register_and_authorize(driver):
     register_page.wait_for_register_button_2()
     register_page.press_register()
 
-    login_page.wait_for_fields_on_login_page()
+    login_page.wait_until_log_butt_not_active()
+
+
+  #  login_page.wait_for_fields_on_login_page()
+   # login_page.fill_email_on_login_page(email)
+   # login_page.fill_password_on_login_page(password)
+
+
+
     login_page.fill_email_and_password_on_login_page(email, password)
 
+  #  time.sleep(2)
+
     login_page.click_login_button()
-
     main_page.wait_go_to_account_header()
-
-
-def create_delete_user(payload, remove):
-
-    response = req
-
-def generate_user_data():
-
-    payload = helper.generate_user_data()
-
-    print(payload) # убрать
-    return payload
-
-
-
