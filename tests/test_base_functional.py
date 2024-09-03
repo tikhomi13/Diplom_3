@@ -33,12 +33,12 @@ class TestLMainPage:
 
         click_bun_ingredient = MainPage(driver)
         click_bun_ingredient.click_ingredient_and_go_to_window()
-        click_bun_ingredient.close_details_window()
+        click_bun_ingredient.close_order_window()
 
         assert click_bun_ingredient.check_ingredient_is_clickable_again()
 
     @allure.title('При добавлении ингредиента в заказ, увеличивается каунтер данного ингредиента')
-    def test_adding_ingredient_increases_its_counter(self, driver):
+    def test_adding_ingredient_increases_its_counter(self, driver): # тут
 
         move_ingredient = MainPage(driver)
         move_ingredient.move_bun_to_order()
@@ -46,7 +46,7 @@ class TestLMainPage:
         assert move_ingredient.check_if_counter_changed().is_displayed()
 
     @allure.title('Залогиненный пользователь может оформить заказ')
-    def test_logged_in_user_is_able_to_place_an_order_order_placed(self, driver, register_and_authorize):
+    def test_logged_in_user_is_able_to_place_an_order_order_placed(self, driver, authorize):
 
         place_an_order = MainPage(driver)
         place_an_order.press_place_an_order()

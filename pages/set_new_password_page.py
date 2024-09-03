@@ -24,10 +24,12 @@ class SetNewPasswordPage(BasePage):
     @allure.title("Метод кликает по кнопке видимости пароля")
     def make_password_visible(self):
 
-        base_page = BasePage(self.driver)
-        base_page.wait_show_password_button()
-        base_page.extra_wait()
-        self.find_element_located(SetNewPasswordPageLocators.SHOW_PASSWORD).click()
+        self.wait_and_click_element(SetNewPasswordPageLocators.SHOW_PASSWORD)
+
+       # base_page = BasePage(self.driver)
+       # base_page.wait_show_password_button()
+       ## base_page.extra_wait()
+       # self.find_element_located(SetNewPasswordPageLocators.SHOW_PASSWORD).click()
 
     @allure.title("Метод возвращает в ассерт подсвеченное поле ввода пароля")
     def check_field_highlighted_if_password_visible(self):

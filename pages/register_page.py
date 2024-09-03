@@ -43,12 +43,7 @@ class RegisterPage(BasePage):
         self.driver.find_element(*RegisterPageLocators.EMAIL_FIELD).send_keys(email)
         self.driver.find_element(*RegisterPageLocators.PASSWORD_FIELD).send_keys(password)
 
-      #  return name, email, password
-
         return email, password
-
-
-
 
     @allure.step('Клик по кнопке Зарегистрироваться')
     def press_register(self):
