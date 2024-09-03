@@ -1,7 +1,6 @@
 import allure
 from pages.base_page import BasePage
 from locators.feed_page_locators import FeedPageLocators
-from locators.main_page_locators import MainPageLocators
 
 
 class FeedPage(BasePage):
@@ -43,13 +42,7 @@ class FeedPage(BasePage):
         text = self.return_text_of_the_element(FeedPageLocators.TODAY_COUNTER) #
         return text
 
-      #  counter = self.wait_and_find_element(FeedPageLocators.TODAY_COUNTER)
-
-      #  return counter.text
-
     @allure.step('Переход в конструктор')
     def go_to_constructor(self):
 
         self.wait_and_click_element(FeedPageLocators.GO_TO_CONSTRUCTOR)
-
-

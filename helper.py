@@ -1,6 +1,7 @@
 import faker
 from data import URLs
 
+# уточнить нужен ли
 
 def generator(): # теперь лишнее
 
@@ -9,11 +10,6 @@ def generator(): # теперь лишнее
     password = fake.password()
     name = fake.name()
     return name, email, password
-
-
-
-
-
 
 def get_email_and_password(email, password):
 

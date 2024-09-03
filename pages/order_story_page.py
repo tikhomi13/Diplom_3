@@ -5,12 +5,6 @@ from locators.order_story_locators import OrderStoryLocators
 
 class OrderStoryPage(BasePage):
 
-    @allure.title('История заказов')
-    def story_order_window(self):
-
-        window = self.find_element_located(OrderStoryLocators.ORDER_HISTORY_WINDOW)
-        return window
-
     @allure.title("Метод возвращает активную (выбранную) кнопку История заказов - т.е. переход в этот раздел")
     def return_active_button_go_to_orders(self):
 

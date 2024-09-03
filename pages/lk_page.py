@@ -1,9 +1,7 @@
-import time
-
 import allure
 from pages.base_page import BasePage
-from pages.main_page import MainPage
 from locators.lk_page_locators import LkPageLocators
+from locators.main_page_locators import MainPageLocators
 
 
 class LkPage(BasePage):
@@ -22,9 +20,7 @@ class LkPage(BasePage):
         self.wait_and_click_element(LkPageLocators.ORDERS_STORY)
 
     @allure.step('Метод скролла')
-    def scroll_to_last_order(self):
+    def wait_and_scroll_to_last_order(self):
 
-        base_page = BasePage(self.driver)
-        base_page.wait_for_last_order()
-
-        base_page.scroll_to_last_order()
+        self.scroll_to_last_order()
+        self.find_element_located(MainPageLocators.LAST_ORDER)

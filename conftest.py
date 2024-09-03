@@ -1,14 +1,11 @@
-import time
-
 import pytest
 from selenium import webdriver
 from data import URLs
 from pages.main_page import MainPage
 from pages.login_page import LoginPage
-from pages.register_page import RegisterPage
 
 
-@pytest.fixture(params=['chrome'])  # 'firefox',
+@pytest.fixture(params=['chrome'])  # 'firefox',  # ДОБАВИТЬ
 def driver(request):
     if request.param == 'chrome':
 
@@ -40,27 +37,3 @@ def authorize(driver):
     main_page.click_login_button_on_main_page()
     login_page.fill_email_and_password()
     login_page.click_login_button_on_login_page()
-
-
-
-
-   # main_page = MainPage(driver)
-   # main_page.wait_for_login_button_mainpage()
-   # main_page.click_login_button_on_main_page()
-
-   # login_page = LoginPage(driver)
-   # login_page.wait_for_register_button()
-   # login_page.click_register_button_on_login_screen()
-
-   # register_page = RegisterPage(driver)
-   # email, password = register_page.fill_registration_fields()
-
-   # register_page.wait_for_register_button_2()
-   # register_page.press_register()
-
-   # time.sleep(1)      # Вот тайм слип, без которого не работает. < --------------------------
-
-   # login_page.fill_email_and_password_on_login_page(email, password) # ЗАПОЛНЕНИЕ ПОЛЕЙ
-
-   # login_page.click_login_button()
-   # main_page.wait_go_to_account_header()

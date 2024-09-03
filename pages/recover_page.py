@@ -15,13 +15,3 @@ class RecoverPage(BasePage):
 
         main_page.wait_and_click_element(MainPageLocators.LOGIN_BUTTON_MAINPAGE)
         main_page.wait_and_click_element(RecoverPageLocators.RECOVER_BUTTON)
-
-    @allure.title('Кнопка восстановить')
-    def get_phrase_for_assert(self):
-
-        recover_password_button_at_recovery_screen = MainPage(self.driver)
-
-        recover_password_button_at_recovery_screen.find_element_located(RecoverPageLocators.RECOVERY_PASSWORD_BUTTON)
-
-       # recover_password_btn_at_recovery_screen = self.find_element_located(RecoverPageLocators.RECOVERY_PASSWORD_BUTTON)
-        return recover_password_button_at_recovery_screen

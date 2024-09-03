@@ -2,8 +2,6 @@ import allure
 from pages.main_page import MainPage
 from pages.lk_page import LkPage
 from pages.feed_page import FeedPage
-from pages.login_page import LoginPage
-from locators.main_page_locators import MainPageLocators
 
 
 class TestFeed:
@@ -23,7 +21,6 @@ class TestFeed:
     def test_users_orders_from_story_are_shown_in_feed_orders_are_displayed(self, driver, authorize):
 
         main_page = MainPage(driver)
-        main_page.wait_for_excess_element_to_disappear() # убрать
         main_page.place_an_order()
 
         number = main_page.get_and_save_new_order_number()
@@ -33,7 +30,7 @@ class TestFeed:
         go_to_personal_account = LkPage(driver)
         go_to_personal_account.go_to_order_story_page()
 
-        go_to_personal_account.scroll_to_last_order()
+        go_to_personal_account.wait_and_scroll_to_last_order()
         go_to_feed = MainPage(driver)
         go_to_feed.go_to_feed()
 
@@ -47,9 +44,7 @@ class TestFeed:
     def test_overall_counter_increases_after_creating_order_success(self, driver, authorize):
 
         feed = MainPage(driver)
-
         feed.wait_for_excess_element_to_disappear()
-
         feed.go_to_feed()
 
         save_orders_before_adding = FeedPage(driver)
@@ -59,11 +54,17 @@ class TestFeed:
         get_overall_counter.wait_for_excess_element_to_disappear()
         get_overall_counter.go_to_constructor()
 
+        get_overall_counter.wait_for_excess_element_to_disappear()
+
         create_order = MainPage(driver)
         create_order.place_an_order()
 
-        get_overall_counter.wait_for_excess_element_to_disappear()
+        get_overall_counter.wait_for_excess_element_2_to_disappear()
+
         create_order.close_order_window()
+
+        get_overall_counter.wait_for_excess_element_to_disappear()
+
 
         create_order.go_to_feed()
         back_to_feed = FeedPage(driver)
@@ -92,8 +93,8 @@ class TestFeed:
         create_order.go_to_feed()
         back_to_feed = FeedPage(driver)
 
-        count_of_orders_after_addind_one = back_to_feed.get_daily_counter()
-        assert (int(count_of_orders) + 1 ) == int(count_of_orders_after_addind_one)
+        count_of_orders_after_adding_one = back_to_feed.get_daily_counter()
+        assert (int(count_of_orders) + 1 ) == int(count_of_orders_after_adding_one)
 
     @allure.title('После оформления заказа его номер появляется в разделе В работе')
     def test_order_number_appears_at_in_progress_section_after_creating_order_success(self, driver, authorize):
