@@ -7,4 +7,6 @@ class OrderStoryLocators:
 
     ORDERS_STORY_SELECTED = (By.XPATH, ".//a[contains(@class, 'Account_link_active') and @href='/account/order-history']")
 
+    LAST_ORDER = (By.XPATH, ".//li[contains(@class, 'OrderHistory_listItem')][last()]")
 
+    GO_TO_FEED_FROM_ORDERS_STORY = (By.XPATH, ".//a[@href='/feed']")

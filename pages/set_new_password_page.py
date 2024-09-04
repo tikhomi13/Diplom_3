@@ -14,6 +14,10 @@ class SetNewPasswordPage(BasePage):
     @allure.title("Метод кликает по кнопке видимости пароля")
     def make_password_visible(self):
 
+        self.wait_for_excess_element_2_to_disappear()
+        self.wait_for_excess_element_to_disappear()
+        self.wait_for_excess_element_1_to_disappear()
+
         self.wait_and_click_element(SetNewPasswordPageLocators.SHOW_PASSWORD)
 
     @allure.title("Метод возвращает в ассерт подсвеченное поле ввода пароля")

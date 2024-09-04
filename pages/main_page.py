@@ -2,8 +2,6 @@ from pages.base_page import BasePage
 from locators.main_page_locators import MainPageLocators
 from seletools.actions import drag_and_drop
 import allure
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 
 class MainPage(BasePage):
@@ -23,6 +21,10 @@ class MainPage(BasePage):
 
     @allure.step('Переход в ленту заказов')
     def go_to_feed(self):
+
+        self.wait_for_excess_element_2_to_disappear()
+        self.wait_for_excess_element_to_disappear()
+        self.wait_for_excess_element_1_to_disappear()
 
         self.wait_and_click_element(MainPageLocators.GO_TO_FEED)
 
@@ -51,7 +53,12 @@ class MainPage(BasePage):
         self.wait_and_find_element(MainPageLocators.BUN_IN_CONSTRUCTOR)
         return bun_ingredient
 
+    @allure.title('Нажатие кнопки перехода в ЛК в хедере')
     def click_personal_account_button(self):
+
+        self.wait_for_excess_element_2_to_disappear()
+        self.wait_for_excess_element_to_disappear()
+        self.wait_for_excess_element_1_to_disappear()
 
         self.wait_and_click_element(MainPageLocators.GO_TO_ACCOUNT_FROM_HEADER)
 
@@ -82,6 +89,7 @@ class MainPage(BasePage):
         counter = self.wait_and_find_element(MainPageLocators.COUNTER_INCREASED)
         return counter
 
+    @allure.title('Закрыть окно с деталями заказа')
     def close_order_window(self):
 
         self.wait_for_excess_element_2_to_disappear()
@@ -90,7 +98,11 @@ class MainPage(BasePage):
     @allure.title('Сделать заказ - добавить ингредиент и кликнуть')
     def place_an_order(self):
 
-        self.add_ingredient()
+        add_ingredient = self.wait_and_find_element(MainPageLocators.BUN_IN_CONSTRUCTOR)
+        order = self.wait_and_find_element(MainPageLocators.BASKET)
+
+        self.add_ingredient(add_ingredient, order)
+
         self.wait_for_excess_element_to_disappear()
         self.wait_and_click_element(MainPageLocators.PLACE_AN_ORDER_BUTTON)
 
@@ -102,12 +114,18 @@ class MainPage(BasePage):
 
         return popup_new_order_window.text
 
+    @allure.title('Проверка кликабельности ингредиента')
     def click_login_button_on_main_page(self):
+
+        self.wait_for_excess_element_2_to_disappear()
 
         self.driver.find_element(*MainPageLocators.LOGIN_BUTTON_MAINPAGE).click()
 
+    @allure.title('Нажатие кнопки Войти в аккаунт на главной стр')
     def wait_and_go_to_account_header(self):
 
-        go_to_account = WebDriverWait(self.driver, 8).until(EC.visibility_of_element_located(MainPageLocators.GO_TO_ACCOUNT_FROM_HEADER))
+        self.wait_for_excess_element_2_to_disappear()
+        self.wait_for_excess_element_to_disappear()
+        self.wait_for_excess_element_1_to_disappear()
 
-        go_to_account.click()
+        self.wait_and_click_element(MainPageLocators.GO_TO_ACCOUNT_FROM_HEADER)

@@ -2,6 +2,7 @@ import allure
 from pages.main_page import MainPage
 from pages.lk_page import LkPage
 from pages.feed_page import FeedPage
+from pages.order_story_page import OrderStoryPage
 
 
 class TestFeed:
@@ -30,9 +31,9 @@ class TestFeed:
         go_to_personal_account = LkPage(driver)
         go_to_personal_account.go_to_order_story_page()
 
-        go_to_personal_account.wait_and_scroll_to_last_order()
-        go_to_feed = MainPage(driver)
-        go_to_feed.go_to_feed()
+        order_story = OrderStoryPage(driver)
+        order_story.wait_and_scroll_to_last_order()
+        order_story.go_to_feed_from_order_story()
 
         get_first_order = FeedPage(driver)
         get_first_order.get_first_order_of_feed_list()
@@ -53,25 +54,20 @@ class TestFeed:
         get_overall_counter = FeedPage(driver)
         get_overall_counter.wait_for_excess_element_to_disappear()
         get_overall_counter.go_to_constructor()
-
         get_overall_counter.wait_for_excess_element_to_disappear()
 
         create_order = MainPage(driver)
         create_order.place_an_order()
-
         get_overall_counter.wait_for_excess_element_2_to_disappear()
-
         create_order.close_order_window()
-
         get_overall_counter.wait_for_excess_element_to_disappear()
-
-
         create_order.go_to_feed()
-        back_to_feed = FeedPage(driver)
 
-        count_of_orders_after_addind_one = back_to_feed.get_overall_counter()
-        assert int(count_of_orders_after_addind_one) > int(count_of_orders)
-        assert (int(count_of_orders) + 1 ) == int(count_of_orders_after_addind_one)
+        back_to_feed = FeedPage(driver)
+        count_of_orders_after_adding_one = back_to_feed.get_overall_counter()
+
+        assert int(count_of_orders_after_adding_one) > int(count_of_orders)
+        assert (int(count_of_orders) + 1 ) == int(count_of_orders_after_adding_one)
 
     @allure.title('При создании нового заказа счётчик Выполнено за сегодня увеличивается')
     def test_today_counter_increases_after_creating_order_success(self, driver, authorize):
@@ -88,7 +84,7 @@ class TestFeed:
         create_order = MainPage(driver)
         create_order.place_an_order()
 
-        create_order.wait_for_excess_element_to_disappear() #
+        create_order.wait_for_excess_element_1_to_disappear()
         create_order.close_order_window()
         create_order.go_to_feed()
         back_to_feed = FeedPage(driver)

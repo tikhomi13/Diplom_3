@@ -22,47 +22,56 @@ class BasePage:
         WebDriverWait(self.driver, 12).until(EC.visibility_of_element_located(locator))
         return self.driver.find_element(*locator)
 
+    @allure.title('Вернуть текст элемента')
     def return_text_of_the_element(self, locator):
 
         my_text = self.wait_and_find_element(locator)
         return my_text.text
 
-    @allure.step('Ожидание исчезноваения мешающего элемента ')
+    @allure.step('Ожидание исчезноваения мешающего элемента')
     def wait_for_excess_element_to_disappear(self):
 
         WebDriverWait(self.driver, 20).until(EC.invisibility_of_element_located(MainPageLocators.EXCESS_ELEMENT))
         WebDriverWait(self.driver, 20).until(EC.invisibility_of_element_located(MainPageLocators.EXCESS_ELEMENT_1))
         WebDriverWait(self.driver, 20).until(EC.invisibility_of_element_located(MainPageLocators.EXCESS_ELEMENT_2))
 
+    @allure.step('Ожидание исчезноваения мешающего элемента')
+    def wait_for_excess_element_1_to_disappear(self):
+
+        WebDriverWait(self.driver, 20).until(EC.invisibility_of_element_located(MainPageLocators.EXCESS_ELEMENT_1))
+        WebDriverWait(self.driver, 20).until(EC.invisibility_of_element_located(MainPageLocators.EXCESS_ELEMENT_2))
+
+    @allure.step('Ожидание исчезноваения мешающего элемента')
     def wait_for_excess_element_2_to_disappear(self):
 
         WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located(MainPageLocators.EXCESS_ELEMENT_1))
 
+    @allure.step('Ожидание невидимости элемента')
     def wait_for_the_element_to_be_INvisible(self, locator):
 
         WebDriverWait(self.driver, 5).until(EC.invisibility_of_element_located(locator))
 
+    @allure.step('Ожидание и клик по элементу')
     def wait_and_click_element(self, locator):
 
         element = WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable(locator))
         element.click()
 
+    @allure.step('Заполнение полей')
     def send_keys_to_the_field(self, field, text):
 
         send_text = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(field))
         send_text.send_keys(text)
 
     @allure.step('Прокрутка')
-    def scroll_to_last_order(self):
+    def scroll_to_element(self, locator):
 
-        element_to_scroll = self.wait_and_find_element(MainPageLocators.LAST_ORDER)
+        element_to_scroll = self.wait_and_find_element(locator)
         self.driver.execute_script("arguments[0]. scrollIntoView();", element_to_scroll)
         return element_to_scroll
 
-    def add_ingredient(self):
+    @allure.step('Перетаскивание элементов')
+    def add_ingredient(self, add_ingredient, order):
 
-        add_ingredient = self.wait_and_find_element(MainPageLocators.BUN_IN_CONSTRUCTOR)
-        order = self.wait_and_find_element(MainPageLocators.BASKET)
         drag_and_drop(self.driver, add_ingredient, order)
-
         return add_ingredient, order

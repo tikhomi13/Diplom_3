@@ -5,7 +5,7 @@ from pages.main_page import MainPage
 from pages.login_page import LoginPage
 
 
-@pytest.fixture(params=['chrome'])  # 'firefox',  # ДОБАВИТЬ
+@pytest.fixture(params=['chrome', 'firefox'])
 def driver(request):
     if request.param == 'chrome':
 
