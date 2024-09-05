@@ -11,7 +11,7 @@ class OrderStoryPage(BasePage):
         self.scroll_to_element(OrderStoryLocators.LAST_ORDER)
         self.find_element_located(OrderStoryLocators.LAST_ORDER)
 
-    @allure.title("Метод возвращает активную (выбранную) кнопку История заказов - т.е. переход в этот раздел")
+    @allure.step("Метод возвращает активную (выбранную) кнопку История заказов - т.е. переход в этот раздел")
     def return_active_button_go_to_orders(self):
 
         active_orders_button = self.wait_and_find_element(OrderStoryLocators.ORDERS_STORY_SELECTED)

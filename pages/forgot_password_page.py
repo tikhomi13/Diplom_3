@@ -6,7 +6,7 @@ from data import Contents
 
 class ForgotPasswordPage(BasePage):
 
-    @allure.title('Переход на страницу восстановления')
+    @allure.step('Переход на страницу восстановления')
     def check_text_on_forgot_password_page_is_visible(self):
 
         self.wait_for_excess_element_to_disappear()

@@ -22,7 +22,7 @@ class BasePage:
         WebDriverWait(self.driver, 12).until(EC.visibility_of_element_located(locator))
         return self.driver.find_element(*locator)
 
-    @allure.title('Вернуть текст элемента')
+    @allure.step('Вернуть текст элемента')
     def return_text_of_the_element(self, locator):
 
         my_text = self.wait_and_find_element(locator)
